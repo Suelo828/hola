@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Google Fake Visual</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s ease;
+  }
+  .logo {
+    margin-bottom: 20px;
+    z-index: 10;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    padding: 10px 20px;
+    width: 560px;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.2);
+    z-index: 10;
+  }
+  .search-box input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  .buttons {
+    margin-top: 20px;
+    z-index: 10;
+  }
+  .btn {
+    background-color: #f8f8f8;
+    border: 1px solid #f8f8f8;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+  }
+  .btn:hover {
+    border: 1px solid #c6c6c6;
+    background-color: #f1f1f1;
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #f2f2f2;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #e4e4e4;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+  <img
+    class="logo"
+    src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+    alt="Google"
+    width="272"
+    height="92"
+  />
+  <div class="search-box">
+    <input id="searchInput" type="text" placeholder="Buscar en Google o escribe una URL" />
+  </div>
+  <div class="buttons">
+    <button class="btn" onclick="startEffect()">Buscar con Google</button>
+    <button class="btn" onclick="startEffect()">Voy a tener suerte</button>
+  </div>
+  <footer>España · Español</footer>
 
+  <script>
+    let colorInterval;
+
+    function changeColors() {
+      colorInterval = setInterval(() => {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+      }, 200); // cambia color cada 200 ms
+    }
+
+    function startEffect() {
+      const query = document.getElementById('searchInput').value.trim();
+      if (query.length === 0) {
+        alert('Por favor escribe algo antes de buscar.');
+        return;
+      }
+
+      // Poner pantalla negra y ocultar todo contenido
+      document.body.innerHTML = '';
+      document.body.style.backgroundColor = 'black';
+
+      // Después de 10 segundos, comienza el cambio de colores
+      setTimeout(() => {
+        changeColors();
+      }, 10000);
+    }
+  </script>
+</body>
+</html>
